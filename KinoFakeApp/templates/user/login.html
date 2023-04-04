@@ -1,0 +1,25 @@
+{% extends '../base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title%}Login{% endblock %}
+
+{% block content %}
+
+<div class="cont">
+    <div class="container">
+        <div class="card">
+          <div class="card-body">
+                <h1>Login</h1>
+               <form method="post">
+                 {% csrf_token %}
+                    {{ form|crispy }}
+                   <button class="btn btn-danger">Login</button>
+                   <a href="{% url 'signUpPage' %}">If no account, link here</a>
+              </form>
+          </div>
+       </div>
+    </div>
+</div>
+
+{% endblock%}

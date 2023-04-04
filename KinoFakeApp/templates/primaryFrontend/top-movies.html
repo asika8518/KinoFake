@@ -1,0 +1,68 @@
+{% extends '../base.html' %}
+
+{% block title %}Топ фильмы{% endblock %}
+
+{% block content %}
+<div class="top-movies">
+    <div class="container">
+        {% for m in  movie %}
+        {% if m.isRecommended %}
+        <h1 class="name mb-4 text-white">Movie of the week</h1>
+<div class="card mb-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ m.poster }}" width="100%">
+                    </div>
+                    <div class="col-md-8">
+                        <h1>{{ m.movieName }}</h1>
+                        <h3>Genre: {{ m.genre.genreName}}</h3>
+                        <p>Year: {{m.yaer}} | Country: {{ m.country }} | Producer: {{ m.producer}}</p>
+                        <p>Description: {{ m.description }}</p>
+                        <a href="{% url 'movieDetailPage' pk=m.pk %}" class="btn btn-danger">Watch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <h3>No recommended movie</h3>
+        {% endif %}
+        {% endfor %}
+        <h1 class="name text-white">Top-10</h1> <br>
+        <div class="owl-carousel owl-theme">
+            {% for movie in movies %}
+            {% if movie.isTopTen %}
+            <div class="item">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>{{ movie.movieName }}</h2>
+                        <img src="{{ movie.poster }}" width="80%"> <br>
+                        <a href="{% url 'movieDetailPage' pk=movie.pk %}"class="btn btn-danger">Watch</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <h3>NOTHING</h3>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+     <center>
+<div id="contact">
+<div id="feedback" class="container m-lg-1">
+    <div class="card mt-5">
+        <div class="card-body">
+        <div class="socials bg-dark rounded">
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-vk"></i></a>
+            <i class="white">Made be Marushkina Anastasia 2023</i>
+</div>
+</div>
+</div>
+</div>
+</div>
+     </center>
+</div>
+{% endblock %}
